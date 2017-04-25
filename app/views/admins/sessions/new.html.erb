@@ -3,15 +3,18 @@
   <h2 class="text-center">Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form"}) do |f| %>
-    <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div>
 
     <% if devise_mapping.rememberable? %>
       <div class="form-group">
@@ -19,9 +22,10 @@
         <%= f.label :remember_me %>
       </div>
     <% end %>
-
+<div class="text-center">
     <%= f.submit "Log in", class: "btn btn-primary btn-lg" %>
   <% end %>
+</div>
 
 </div>
 
